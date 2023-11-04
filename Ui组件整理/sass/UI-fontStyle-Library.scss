@@ -1,0 +1,31 @@
+/*
+    指定文本显示的行数
+*/
+@mixin clamp-lines($line-count) {
+    display: -webkit-box; /* 这一行设置元素的显示方式为弹性布局，使用-webkit-box可以触发Webkit浏览器（如Chrome和Safari）中的弹性盒模型。 */
+    -webkit-box-orient: vertical; /*  这一行设置弹性盒的方向为垂直方向，即元素内部的子元素将会在垂直方向上排列。 */
+    overflow: hidden; /* 这一行设置元素的溢出内容隐藏，这样超出指定行数的文本将会被隐藏。 */
+    -webkit-line-clamp: 3; /* 指定显示的行数 */
+}
+
+/*
+    图片放大效果
+
+    HTML结构：
+<figure class="img-window">
+  <img src="example.jpg" alt="示例图片">
+  <figcaption>这是一张示例图片的说明文本。</figcaption>
+</figure>
+
+*/
+@mixin zoom-img() {
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: auto;
+        transition: all 0.4s;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}

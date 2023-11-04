@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 定义3列网格布局 */
+  grid-template-rows: auto; /* 自动确定行高 */
+  grid-gap: 10px; /* 设置子元素之间的间隔 */
+}
+
+.item {
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.item1 {
+  grid-row: 1; /* 第一个子元素位于第一行 */
+  grid-column: 2; /* 第一个子元素位于第二列 */
+}
+
+
+</style>
+<body>
+    <div class="grid-container">
+        <div class="item item1">1</div>
+        <div class="item item2">2</div>
+        <div class="item item3">3</div>
+      </div>
+      
+</body>
+</html>

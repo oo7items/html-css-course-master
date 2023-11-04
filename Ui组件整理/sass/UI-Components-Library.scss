@@ -1,0 +1,188 @@
+/* initializeScrollToTopButton - 初始化滚动至顶部按钮
+JS使用：zgzUi.initializeScrollToTopButton(".scrollToTopBtn");
+HTML结构：
+    <div id="scrollToTopBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 328l144-144 144 144"/></svg>
+    </div>
+    JS使用：zgzUi.initializeScrollToTopButton(".scrollToTopBtn", ".swiper--1");
+SCSS样式: 
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 600;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s ease-in-out;
+    transform: translate3d(0, 200%, 0);
+    &.show {
+        opacity: 1;
+        visibility: visible;
+        -webkit-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+*/
+/* initializeLoader - 初始化页面加载
+JS使用：zgzUi.initializeLoader(".nav-container");
+HTML结构：
+<div class="loader-container">
+    <div class="loader"></div>
+</div>
+SCSS样式：
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.loader {
+    &-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+    border: 8px solid var(--color-primary);
+    border-radius: 50%;
+    border-top: 8px solid #ffffff;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+*/
+/* initializeDropdowns - 初始化下拉框
+HTML结构：
+<li class="dropdown" data-dropdown-type="click">
+    <a href="###" class="dropdown__btn">Dropdown 1</a>
+    <ul class="dropdown__menu">
+        <a href="#" data-tab="tab1">Item 1</a>
+        <a href="#" data-tab="tab2">Item 2</a>
+        <a href="#" data-tab="tab3">Item 3</a>
+    </ul>
+</li>
+
+<li class="dropdown" data-dropdown-type="mouse">
+    <a href="###" class="dropdown__btn">Dropdown 1</a>
+    <ul class="dropdown__menu">
+        <a href="#" id="tab1">Item 1</a>
+        <a href="#" id="tab2">Item 2</a>
+        <a href="#" id="tab3">Item 3</a>
+    </ul>
+</li>
+SCSS样式：
+.dropdown {
+    position: relative;
+    &__toggle {
+        &::after {
+            // 引用"bootstrap5" 垂直倒三角icon
+            display: inline-block;
+            margin-left: .255em;
+            vertical-align: .255em;
+            content: "";
+            border-top: .3em solid;
+            border-right: .3em solid transparent;
+            border-bottom: 0;
+            border-left: .3em solid transparent;
+            transition: rotate 0.3s;
+        }
+    }
+    &__menu {
+        display: none;
+        position: absolute;
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+        top: 100%;
+        transform: translateY(-2px);
+        // inset: 0px auto auto 0px;
+        // transform: translate(0px, 40px);
+        border: 1px solid rgba(0, 0, 0, 0.176);
+        background-color: #fff;
+        border-radius: 0.5rem;
+    }
+    &__toggle.show:active {
+        color: var(--color-primary) !important;
+    }
+    &__toggle::after.show {
+        rotate: 90deg; // def = degree
+    }
+    &__menu.show {
+        display: block;
+    }
+    &__link:link,
+    &__link:visited {
+        display: block;
+        padding: 0.4rem 1.6rem;
+        text-decoration: none;
+        color: inherit;
+        font-size: 1.6rem;
+    }
+    &__link:hover {
+        background-color: #f8f9fa;
+    }
+    &__link:active {
+        color: var(--white);
+        background-color: var(--blue);
+    }
+}
+*/
+/* operationsTab 选项卡切换
+JS调用：zgzUi.operationsTab(".operations__tab-container", ".operations__tab", "operations__content");
+HTML结构：
+<div class="operations">
+    <div class="operations__tab-container">
+        <button href="###" class="operations__tab operations__tab--active" data-tab="1">tab1</button>
+        <button href="###" class="operations__tab" data-tab="2">tab2</button>
+        <button href="###" class="operations__tab" data-tab="3">tab3</button>
+    </div>
+    <div class="operations__content operations__content--1 operations__content--active">tab1 content</div>
+    <div class="operations__content operations__content--2">tab2 content</div>
+    <div class="operations__content operations__content--3">tab3 content</div>
+</div>
+SCSS样式：
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.operations {
+    &__tab {
+        // 编写选项卡样式
+        padding: 1rem 2rem;
+        text-decoration: none;
+        font-size: 1.7rem;
+        border: 1px solid #eee;
+        color: #000;
+        background-color: #fff;
+        // 选中选项卡样式
+        &--active {
+            color: #fff;
+            background-color: var(--color-primary, #add8e6);
+            border: 1px solid var(--color-primary, #add8e6);
+        }
+    }
+    &__content {
+        // 编写选项卡内容样式
+        display: none;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        // 编写选中选项卡内容样式
+        &--active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    }
+}
+*/
