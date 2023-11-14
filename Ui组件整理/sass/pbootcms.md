@@ -1,4 +1,10 @@
 # 功能调用
+## head标签内容调用
+<title>{pboot:pagetitle}</title>
+<meta name="keywords" content="{pboot:pagekeywords}" />
+<meta name="description" content="{pboot:pagedescription}" />
+<link rel="icon" href="{pboot:sitelogo}" type="image/x-icon">
+
 ## 标签切换功能调用
 <div class="operations">
           <ul class="operations__tabs">
@@ -37,10 +43,44 @@
           </div>
           {/pboot:2nav} {/pboot:nav}
         </div>
-## 顶级栏目大图调用
-```
-{pboot:sort scode="{sort:tcode}"}
-    <div class="sort" style="background-image: url([sort:pic]);">
-{pboot:sort scode="{sort:tcode}"}
-```
 
+## 指定栏目子栏目调用
+ {pboot:nav scode="5" }
+          {pboot:2nav parent=[nav:scode] num="4"}
+          <a class="search__link" href="[2nav:link]">[2nav:name]</a>
+          {/pboot:2nav}
+          {/pboot:nav}
+
+## 栏目banner调用
+{pboot:sort scode="{sort:tcode}"}
+<div class="sort">
+    <img src="[sort:pic]" alt="">
+    <div class="sort__content">
+        <div class="sort__name">
+            {sort:name}
+        </div>
+        <div class="sort__subname">
+            {sort:subname}
+        </div>
+    </div>
+</div>
+{/pboot:sort}
+
+## 导航栏判断是否有子菜单
+ {pboot:nav}
+          {pboot:if('[nav:soncount]'>0)}
+          <li data-dropdown-type="mouseover" class="main-nav__item dropdown   {pboot:2if('[nav:scode]'=='{sort:tcode}')}main-nav__item--active{/pboot:2if}">
+            <a href="###" class="main-nav__link dropdown__toggle"> [nav:name] </a>
+            <div class="main-nav__arrow"></div>
+            <ul class="dropdown__menu">
+              {pboot:2nav parent=[nav:scode]}
+                <a href="[2nav:link]" class="dropdown__link" id="tab1">[2nav:name]</a>
+                {/pboot:2nav}
+            </ul>
+          </li>
+          {else}
+          <li class="main-nav__item   {pboot:2if('[nav:scode]'=='{sort:tcode}')}main-nav__item--active{/pboot:2if}">
+            <a href="[nav:link]" class="main-nav__link"> [nav:name] </a>
+            <div class="main-nav__arrow"></div>
+          </li>
+          {/pboot:if}

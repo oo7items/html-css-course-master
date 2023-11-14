@@ -10,7 +10,6 @@
 
 /*
     图片放大效果
-
     HTML结构：
 <figure class="img-window">
   <img src="example.jpg" alt="示例图片">
@@ -29,3 +28,20 @@
         }
     }
 }
+@mixin overlay($color:#000,$opasity)
+.black-overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  
+    // 黑色半透明背景遮罩
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); // 透明度可以根据需求调整
+    }
+  }

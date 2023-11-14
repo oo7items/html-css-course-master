@@ -1,0 +1,128 @@
+/* 栏目banner组件
+HTML结构：
+{pboot:sort scode="{sort:tcode}"}
+<div class="sort">
+    <img src="[sort:pic]" alt="">
+    <div class="sort__content">
+        <div class="sort__name">
+            {sort:name}
+        </div>
+        <div class="sort__subname">
+            {sort:subname}
+        </div>
+    </div>
+</div>
+{/pboot:sort}
+
+SCSS样式：
+.sort {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  // 是否开启背景遮罩
+  &::before {
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 100%;
+    backg1round-color: #000;
+    opacity: 0.35;
+    z-index: -1;
+  }
+  // 响应式图片
+  img {
+    z-index: -3;
+    width: 100%;
+    // height: 100%;
+    // object-fit: cover;
+  }
+  // 水平垂直居中
+  &__content {
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  // 栏目标题
+  &__name {
+    font-size: 4rem;
+    font-weight: 700;
+    // margin-bottom: 1.5rem;
+  }
+  // 栏目副标题
+  &__subname {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+  }
+}
+*/
+/* 栏目面包屑组件
+HTML:
+<nav aria-label="breadcrumb">
+  <ul class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb__list">
+        <li class="breadcrumb__item active">
+          <a class="breadcrumb__link breadcrumb__link--flex" href="{pboot:httpurl}">
+            <svg width="1em" height="1em" name="menu-home" class="icon icon-home">
+              <use xlink:href="#icon-home"></use>
+            </svg>
+            <span> Home </span>
+          </a>
+        </li>
+        <div class="breadcrumb__item">></div>
+        <li class="breadcrumb__item">
+          <a class="breadcrumb__link" href="{sort:link}"> {sort:name} </a>
+        </li>
+        <div class="breadcrumb__item">></div>
+        <li class="breadcrumb__item">
+          <div class="breadcrumb__link" href="###">{content:title}</div>
+        </li>
+      </ul>
+    </div>
+  </ul>
+</nav>
+SCSS:
+.breadcrumb {
+    padding: 2rem 2rem;
+    background-color: #fafafa;
+    &__list {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      list-style: none;
+    }
+    .active {
+      .breadcrumb__link {
+        color: var(--color-primary) !important;
+      }
+    }
+    &__link {
+      font-size: 1.6rem;
+      text-decoration: none;
+      font-weight: 700;
+      &:hover {
+        text-decoration: underline;
+      }
+      &:visited {
+        color: #000;
+      }
+      &--flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .7rem;
+      }
+    
+    }
+    .icon {
+      fill: #000;
+    }
+  
+  }
+
+*/

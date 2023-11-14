@@ -92,7 +92,7 @@ zgzUi = (function () {
       }, 500);
     });
   }
-  /** 初始化下拉框 */
+  /** 初始化下拉框 -- 等待笔记：点击下拉框，显示全部选框 */
   function initializeDropdowns() {
     const dropdowns = document.querySelectorAll(".dropdown");
     dropdowns.forEach((dropdown) => {
@@ -102,10 +102,10 @@ zgzUi = (function () {
       // 切换菜单或按钮的显示和隐藏状态
       function toggleClassName() {
         dropdownMenu.classList.toggle("show");
-        dropdownToggle.classList.toggle("show");
+        dropdownToggle?.classList.toggle("show");
       }
       if (dropdownType === "click") {
-        dropdownToggle.addEventListener("click", () => {
+        dropdownToggle?.addEventListener("click", () => {
           toggleClassName();
         });
       } else if (dropdownType === "mouseover") {
@@ -121,9 +121,9 @@ zgzUi = (function () {
       dropdowns.forEach((dropdown) => {
         const dropdownMenu = dropdown.querySelector(".dropdown__menu");
         const dropdownToggle = dropdown.querySelector(".dropdown__toggle");
-        if (!event.target.matches(".dropdown__toggle") && !event.target.matches(".dropdown-content a")) {
+        if (dropdownMenu.contains(".show") && !event.target.matches(".dropdown__toggle") && !event.target.matches(".dropdown__menu a")) {
           dropdownMenu.classList.toggle("show");
-          dropdownToggle.classList.toggle("show");
+          dropdownToggle?.classList.toggle("show");
         }
       });
     });
